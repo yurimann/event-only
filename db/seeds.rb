@@ -19,3 +19,10 @@ Location.create(
   description: "The home of high performance athletic training.",
   image: "http://img4.onthesnow.com/image/la/82/8277.jpg",
 )
+
+Location.create(
+  name: "BC Place",
+  city: "Vancouver",
+  description: "Home of the BC Lions and Vancouver Whitecaps FC.",
+  image: "http://www.bcplace.com/images/see-all-events-bg-7129c54c47ec2b9c1a7c941f8f020982.jpg",
+)

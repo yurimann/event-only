@@ -1,0 +1,16 @@
+// Place all the styles related to the locations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+img.location {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+span.title.event {
+  color: red;
+}
+
+span.title.only {
+  color: blue;
+}

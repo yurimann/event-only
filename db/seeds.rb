@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Location.create(
+convention_centre = Location.create(
   name: "Toronto Convention Centre",
   city: "Toronto",
   description: "Toronto's biggest convention location.",
@@ -26,3 +26,13 @@ Location.create(
   description: "Home of the BC Lions and Vancouver Whitecaps FC.",
   image: "http://www.bcplace.com/images/see-all-events-bg-7129c54c47ec2b9c1a7c941f8f020982.jpg",
 )
+
+20.times do
+
+  Event.create(
+    name: FFaker::Sport.name,
+    location: Location.all.sample,
+    date: ((rand + 0.5) * 20).days.ago,
+  )
+
+end

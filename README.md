@@ -261,7 +261,16 @@ Now is a good time to commit your work thus far.
 
 ### Views and Forms - Event
 
+In this application, each `Location` can have many `Events`. The `Event` model already exists; now you have to build the CRUD operations for it, just like we did before.
 
+To help you get started, let's add a link to the location `show` page to make a new event:
+
+```html
+<h3><%= link_to 'New Event', new_location_event_path(@location) %></h3>
+```
+
+We want to accomplish the following:
+* be able to create new Events
 
 
 ### Plan (notes):

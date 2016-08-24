@@ -8,7 +8,7 @@ Rails Form Helpers
 Refactor the below HTML form so that it uses Rails form helpers. Assume
 that `@job_application` is an empty `JobApplication` object.
 
-@TODO Link to Rails form docs
+[//]: # (@TODO Link to Rails form docs)
 
 ```html
 <form class="new_job_application" id="new_job_application" action="/job_applications" accept-charset="UTF-8" method="post">
@@ -58,6 +58,8 @@ EventOnly is an app for creating and tracking events in different locations acro
 
 Each of these models has a set of CRUD (Create, Read, Update, Delete) database operations. Your task will be to build the views and forms to make EventOnly a functional application!
 
+### Views - Location
+
 The database already has some locations and events in it since you ran `rake db:seed`. Let's create an index page to view them. Do this by modifying the `views/locations/index.html.erb` file.
 
 ```html
@@ -80,7 +82,7 @@ Let's create a page that shows off a specific location. Edit the `views/location
 
 ```html
 <h1><%= @location.name %></h1>
-<%= link_to 'Edit', edit_location_path %> |
+ |
 <%= link_to 'Delete', location_path, method: :delete, data: {confirm: "Are you sure you want to delete the location '#{@location.name}'? This cannot be undone!"} %>
 
 <div class="location">
@@ -158,14 +160,108 @@ Rails also knows that if we ask it to render a collection of Location objects, i
 ```html
 <h1>EventOnly</h1>
 
-<p>
-  <%= link_to 'New Location', new_location_path %>
-</p>
-
 <%= render @locations %>
 ```
 
-Visit both pages again in the browser and you should see exactly the same output as before. Commit your changes!
+Visit both pages again in the browser and you should see exactly the same output as before. Commit your changes and let's move on to forms!
+
+### Forms - Location
+
+We can now view all of the Locations that exist in the database, but what about creating new ones? We first need to get to the new page. Add the following code somewhere in the `index.html.erb` file as follows:
+
+```html
+<p>
+  <%= link_to 'New Location', new_location_path %>
+</p>
+```
+
+A link should now appear on `http://localhost:3000/locations`, but it should lead to an empty page. We need a form so that we can create new Locations. The back-end has already been written. If we create the form correctly, it should work right away. Note that the server has created an empty `Location` object for us called `@location`. Edit the view called `views/locations/new.html.erb` as follows:
+
+```html
+<h1>New Location</h1>
+
+<%= link_to 'Show all locations', locations_path %>
+
+<%= form_for @location do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :image %>
+    <%= f.text_field :image %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+```
+
+The fields `name`, `city`, `description`, and `image` already exist in our database schema. Reload your `new` page and we should see a working form! Try it out. Make sure you enter a real image URL so we can see it on our other pages.
+
+We now need to create a page to edit existing `Location` objects. We're going to need another form. What fields will the form need? It's actually going to need exactly the same fields that we have on the new page's form. This should raise an immediate flag in your head! Because our two forms are going to be identical, let's save the work by putting the form in one place – a partial.
+
+Make a new partial view at `views/locations/new.html.erb`, and move the entire form over to that file, removing the `@` before `location`, ie:
+
+`<%= form_for location do |f| %>`
+
+Now we can shorten our `new.html.erb` view so it looks like this:
+
+```html
+<h1>New Location</h1>
+
+<%= link_to 'Show all locations', locations_path %>
+
+<%= render 'form', location: @location %>
+<% end %>
+```
+
+Reload your `new` page and make sure the form still works.
+
+Now we can make the `edit` page quite easily! Let's first add a link to it on the `show` page:
+
+`<%= link_to 'Edit', edit_location_path %>`
+
+Now edit the `edit.html.erb` view:
+
+```html
+<h1>Edit <%= link_to @location.name, @location %></h1>
+
+<%= render 'form', location: @location %>
+```
+
+Try editing the `Location` you made earlier.
+
+We can now Create, Read, and Update `Locations`. We're just missing the D in CRUD: Delete! Add the following delete link to the `show` page as well. It will confirm with the user before sending a `DELETE` request to the server. The view should look something like this:
+
+```html
+<h1><%= @location.name %></h1>
+<%= link_to 'Edit', edit_location_path %>
+| <%= link_to 'Delete', location_path, method: :delete, data: {confirm: "Are you sure you want to delete the location '#{@location.name}'? This cannot be undone!"} %>
+
+<%= render @location %>
+```
+
+Reload the show page and try deleting the `Location` you just made. If it works, you've just successfully built the CRUD operations for the `Location` model using partial views.
+
+Now is a good time to commit your work thus far.
+
+### Views and Forms - Event
+
+
 
 
 ### Plan (notes):
@@ -203,7 +299,7 @@ Visit both pages again in the browser and you should see exactly the same output
   * need the previous form in two places! Use a partial form!
 
 
-@TODO Search page that uses form_tag
+[//]: # (@TODO Search page that uses form_tag)
 
 
 #### Home page

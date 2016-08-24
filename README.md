@@ -214,7 +214,7 @@ The fields `name`, `city`, `description`, and `image` already exist in our datab
 
 We now need to create a page to edit existing `Location` objects. We're going to need another form. What fields will the form need? It's actually going to need exactly the same fields that we have on the new page's form. This should raise an immediate flag in your head! Because our two forms are going to be identical, let's save the work by putting the form in one place – a partial.
 
-Make a new partial view at `views/locations/new.html.erb`, and move the entire form over to that file, removing the `@` before `location`, ie:
+Make a new partial view at `views/locations/_form.html.erb`, and move the entire form over to that file, removing the `@` before `location`, ie:
 
 `<%= form_for location do |f| %>`
 

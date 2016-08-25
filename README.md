@@ -66,7 +66,7 @@ The database already has some locations and events in it since you ran `rake db:
 ```html
 <h1>EventOnly</h1>
 
-<%= @locations.each do |location| %>
+<% @locations.each do |location| %>
   <div class="location">
     <h3>City: <%= location.city %></h3>
     <%= location.description %><br />
@@ -87,7 +87,7 @@ Let's create a page that shows off a specific location. Edit the `views/location
 <div class="location">
   <h3>City: <%= @location.city %></h3>
   <%= @location.description %><br />
-  <%= link_to image_tag(@location.image, class: "location"), location %>
+  <%= link_to image_tag(@location.image, class: "location"), @location %>
 </div>
 ```
 

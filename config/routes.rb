@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-
-  get 'example/form'
-
+  root 'home#index'
   get 'home/index'
 
-  root 'home#index'
   resources :locations do
     resources :events
   end

@@ -5,6 +5,6 @@
 
 <h3><%= link_to 'New Event', new_location_event_path(@location) %></h3>
 
-<h2>Events</h2>
+<h2><%= link_to 'Events', location_events_path(@location) %></h2>
 
 <%= render @events %>

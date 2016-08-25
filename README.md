@@ -46,8 +46,9 @@ For help, see [the docs on form helpers](http://guides.rubyonrails.org/form_help
 Building Views and Forms
 -----
 Let's use this knowledge to build out the views and forms for an application.
-Clone this repository and run:
+Clone this repository, enter the newly-created directory `event-only`, and run:
 
+* `bundle install`
 * `rake db:migrate`
 * `rake db:seed`
 

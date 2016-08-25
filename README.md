@@ -276,7 +276,7 @@ Similarly, the below example is the URL to create an `Event` that belongs to the
 
 Or show a specific event:
 
-<http://localhost:3000/locations/1/events/3>
+<http://localhost:3000/locations/1/events/5>
 
 Or edit a specific event:
 

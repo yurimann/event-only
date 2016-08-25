@@ -222,7 +222,6 @@ Now we can shorten our `new.html.erb` view so it looks like this:
 <%= link_to 'Show all locations', locations_path %>
 
 <%= render 'form', location: @location %>
-<% end %>
 ```
 
 Reload your `new` page and make sure the form still works.

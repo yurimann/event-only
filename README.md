@@ -256,7 +256,7 @@ Now is a good time to commit your work thus far.
 
 ### Views and Forms - Event
 
-In this application, each `Location` can have many `Events`. The `Event` model already exists; now you have to build the CRUD operations for it, just like we did before.
+In this application, each `Location` can have many `Events`. The `Event` model already exists; now you have to build the CRUD operations for it, just like we did before. *Read this whole section before getting started* - there is information that you'll need throughout.
 
 To help you get started, let's add a link somewhere in the location `show` page to make a new event, as well as to go to the events page for that `Location`:
 
@@ -266,11 +266,11 @@ To help you get started, let's add a link somewhere in the location `show` page 
 <h2><%= link_to 'Events', location_events_path(@location) %></h2>
 ```
 
-Now we have to make the form to create a new Event. In this app, `Event` is a nested resource under `Location`. That means we access events as follows. The below example should, if we create the views correctly, show us all of the `Events` that belong to the `Location` with id 1.
+In this app, `Event` is a nested resource under `Location`. That means we access events as follows. The below example should, if we create the views correctly, show us all of the `Events` that belong to the `Location` with id 1.
 
 <http://localhost:3000/locations/1/events>
 
-Similarly, the below example is the URL to create an `Event` that belongs to the 3rd `Location`:
+Similar to above, the below example is the URL to create an `Event` that belongs to the 3rd `Location`:
 
 <http://localhost:3000/locations/3/events/new>
 
@@ -285,16 +285,16 @@ Or edit a specific event:
 #### Your tasks:
 1. Create a view to display a specific event.
   * `views/events/show.html.erb`
-  * you will have access to the `@event` instance variable
+  * you will have access to the `@event` and `@location` instance variables
 1. Display all the events that belong to a location.
   * `views/events/index.html.erb`
-  * you will have access to the `@events` instance variable
+  * you will have access to the `@events` and `@location` instance variables
 1. Create a new event.
   * `views/events/new.html.erb`
-  * you will have access to the `@event` instance variable
+  * you will have access to the `@event` and `@location` instance variables
 1. Edit an event.
   * `views/events/edit.html.erb`
-  * you will have access to the `@event` instance variable
+  * you will have access to the `@event` and `@location` instance variables
 1. Delete an event.
   * `views/events/show.html.erb`
 
@@ -303,7 +303,8 @@ Remember that you should be using partial views whenever you have duplicated cod
 Because `Event` is nested under `Location`, the form for Events must reflect this nesting as follows:
 
 ```html
-<%= form_for [@location, @event] do |f| %>
+<!-- we have access to @location throughout our Event views, and we passed in the event object -->
+<%= form_for [@location, event] do |f| %>
   <!-- Form fields go here -->
   <!-- Look in the schema.rb file to see the fields in the events table -->
 <% end %>

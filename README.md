@@ -256,7 +256,7 @@ Now is a good time to commit your work thus far.
 
 ### Views and Forms - Event
 
-In this application, each `Location` can have many `Events`. The `Event` model already exists; now you have to build the CRUD operations for it, just like we did before. *Read this whole section before getting started* - there is information that you'll need throughout.
+In this application, each `Location` can have many `Events`. The `Event` model already exists; now you have to build the CRUD operations for it, just like we did before. *Read this whole section before getting started* - there is information at the bottom that is quite useful.
 
 To help you get started, let's add a link somewhere in the location `show` page to make a new event, as well as to go to the events page for that `Location`:
 
@@ -283,12 +283,12 @@ Or edit a specific event:
 <http://localhost:3000/locations/1/events/2/edit>
 
 #### Your tasks:
-1. Create a view to display a specific event.
-  * `views/events/show.html.erb`
-  * you will have access to the `@event` and `@location` instance variables
 1. Display all the events that belong to a location.
   * `views/events/index.html.erb`
   * you will have access to the `@events` and `@location` instance variables
+1. Create a view to display a specific event.
+  * `views/events/show.html.erb`
+  * you will have access to the `@event` and `@location` instance variables
 1. Create a new event.
   * `views/events/new.html.erb`
   * you will have access to the `@event` and `@location` instance variables
@@ -308,6 +308,12 @@ Because `Event` is nested under `Location`, the form for Events must reflect thi
   <!-- Form fields go here -->
   <!-- Look in the schema.rb file to see the fields in the events table -->
 <% end %>
+```
+
+This also applies to anywhere we want to link to a nested resource - in this case, an Event. Assuming we have access to variables `location` and `event`:
+
+```html
+<%= link_to "Event link text", [location, event] %>
 ```
 
 ## Stretch Assignment

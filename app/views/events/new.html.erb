@@ -1,1 +1,4 @@
-events#new page
+<h1>New Event</h1>
+
+<%= link_to 'Show all events', location_events_path(@location) %>
+<%= render 'form', location: @location, event: @event %>
